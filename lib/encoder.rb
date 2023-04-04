@@ -7,6 +7,7 @@ def encode(text)
   array = []
   string = ""
 
+  # Creating an array with all text characters as morse code
   text.each_char do |char|
     if char == " "
       array << "|"
@@ -15,6 +16,7 @@ def encode(text)
     end
   end
 
+  # Creating a string with morse code characters and using the | as space
   array.each.with_index do |c, i|
     if array[i - 1] == "|"
       string << c
@@ -23,16 +25,18 @@ def encode(text)
     end
   end
 
+  # Removing space before |
   string.each_char.with_index do |_char, index|
     if string[index + 1] == "|"
       string[index] = ""
     end
   end
 
+  # Revoming space in the index 0 of the string
   string = string.lstrip
 
   return string
 end
 
-puts encode("Hi Guys")
-puts encode("I Love all of you")
+puts encode("Hi Guys") # Should return .... ..|--. ..- -.-- ...
+puts encode("I Love all of you") # Should return ..|.-.. --- ...- .|.- .-.. .-..|--- ..-.|-.-- --- ..-
