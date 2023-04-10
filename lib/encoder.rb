@@ -32,11 +32,22 @@ def encode(text)
     end
   end
 
+  # Removing punctuation space
+  string.each_char.with_index do |_char, index|
+    if string[index + 1] == "|" && string[index] == " "
+      string[index] = ""
+    end
+    if string[index + 1] == " " && string[index] == " "
+      string[index] = ""
+    end
+  end
+
   # Revoming space in the index 0 of the string
   string = string.lstrip
 
   return string
 end
 
-puts encode("Hi Guys") # Should return .... ..|--. ..- -.-- ...
-puts encode("I Love all of you") # Should return ..|.-.. --- ...- .|.- .-.. .-..|--- ..-.|-.-- --- ..-
+# puts encode("Hi Guys") # Should return .... ..|--. ..- -.-- ...
+# puts encode("I Love all of you") # Should return ..|.-.. --- ...- .|.- .-.. .-..|--- ..-.|-.-- --- ..-
+puts encode("hello, world").inspect
